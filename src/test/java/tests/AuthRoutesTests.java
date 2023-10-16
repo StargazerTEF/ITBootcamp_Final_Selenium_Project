@@ -22,4 +22,13 @@ public class AuthRoutesTests extends BasicTest {
         Assert.assertEquals(navPage.getCurrentUrl(), baseUrl + "/login",
                 "Current url should be " + baseUrl + "/login");
     }
+
+    @Test(priority = 3, retryAnalyzer = RetryAnalyzer.class)
+    public void ForbidsVisitsToAdminCitiesUrlIfNotAuthenticated() {
+
+        driver.navigate().to(baseUrl + "/admin/cities");
+        Assert.assertEquals(navPage.getCurrentUrl(), baseUrl + "/login",
+                "Current url should be " + baseUrl + "/login");
+
+    }
 }
