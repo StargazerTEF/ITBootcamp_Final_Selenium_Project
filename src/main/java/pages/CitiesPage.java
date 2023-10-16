@@ -69,4 +69,27 @@ public class CitiesPage extends BasicPage {
     public String getTextFromCertainCellFromCertainRow(int rowNumber, int columnNumber) {
         return getCertainCellFromCertainRow(rowNumber, columnNumber).getText();
     }
+    public List<WebElement> getDeleteButtonsFromAllRows () {
+        return driver.findElements(By.cssSelector(".v-data-table__wrapper tbody tr td #delete"));
+    }
+    public WebElement getDeleteButtonFromRow (int rowNumber) {
+        return getDeleteButtonsFromAllRows().get(rowNumber - 1);
+    }
+    public void clickOnDeleteButtonFromRow (int rowNumber) {
+        getDeleteButtonFromRow(rowNumber).click();
+    }
+    public WebElement getPopUpMenuForDeleteCity () {
+        return driver.findElement(By.cssSelector("header.v-app-bar"));
+    }
+    public void waitUntilPopUpMessageForDeleteCityIsVisible () {
+        wait
+                .withMessage("Pop-up message for delete city should be visible.")
+                .until(ExpectedConditions.visibilityOf(getPopUpMenuForDeleteCity()));
+    }
+    public WebElement getDeleteButtonFromPopUpMenuForDeleteCity () {
+        return driver.findElement(By.cssSelector(".v-dialog__content--active button.text--lighten3"));
+    }
+    public void clickOnDeleteButtonFromPopUpMenuForDeleteCity () {
+        getDeleteButtonFromPopUpMenuForDeleteCity().click();
+    }
 }

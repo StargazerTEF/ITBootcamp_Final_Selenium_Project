@@ -50,5 +50,13 @@ public class MessagePopUpPage extends BasicPage{
     public boolean getTextFromPopUpMessageForSuccessfulAddOrEditCity () {
         return getPopUpMessageForSuccessfulActions().getText().contains("Saved successfully");
     }
+    public void waitUntilPopUpMessageForSuccessfulDeleteCityIsVisible () {
+        wait
+                .withMessage("Pop-up message for successful add/edit city should be visible.")
+                .until(ExpectedConditions.visibilityOf(getPopUpMessageForSuccessfulActions()));
+    }
+    public boolean getTextFromPopUpMessageForSuccessfulDeleteCity () {
+        return getPopUpMessageForSuccessfulActions().getText().contains("Deleted successfully");
+    }
 }
 

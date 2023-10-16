@@ -90,4 +90,25 @@ public class AdminCitiesTests extends BasicTest {
                 "Name cell from first row should contain " + newCityName);
 
     }
+    @Test(priority = 6, retryAnalyzer = RetryAnalyzer.class)
+    public void DeleteCity() {
+
+        String newCityName = "Marko Peric's city Edited";
+
+        navPage.clickOnAdminButton();
+        navPage.waitUntilAdminListIsVisible();
+        navPage.clickOnAdminCitiesFromAdminLIst();
+        navPage.waitUntilCurrentUrlContainsAdminCities();
+        citiesPage.fillInSearchInputField(newCityName);
+        citiesPage.waitUntilNumberOfRowsOfCitiesInSearchIs(1);
+        Assert.assertEquals(citiesPage.getTextFromCertainCellFromCertainRow(1, 2), newCityName,
+                "Name cell from first row should contain " + newCityName);
+        citiesPage.clickOnDeleteButtonFromRow(1);
+        citiesPage.waitUntilPopUpMessageForDeleteCityIsVisible();
+        citiesPage.clickOnDeleteButtonFromPopUpMenuForDeleteCity();
+        messagePopUpPage.waitUntilPopUpMessageForSuccessfulDeleteCityIsVisible();
+        Assert.assertTrue(messagePopUpPage.getTextFromPopUpMessageForSuccessfulDeleteCity(),
+                "Pop up message should contain text 'Deleted successfully'.");
+
+    }
 }
