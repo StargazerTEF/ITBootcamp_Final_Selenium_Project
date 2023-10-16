@@ -31,4 +31,26 @@ public class SignUpTests extends BasicTest {
 
     }
 
+    @Test(priority = 3, retryAnalyzer = RetryAnalyzer.class)
+    public void DisplaysErrorWhenUserAlreadyExists() {
+
+        String name = "Another User";
+        String email = "admin@admin.com";
+        String password = "12345";
+        String confirmPassword = "12345";
+
+        navPage.clickOnSignUpButton();
+        navPage.waitUntilCurrentUrlContainsSignUp();
+        signUpPage.fillInNameInputField(name);
+        signUpPage.fillInEmailInputField(email);
+        signUpPage.fillInPasswordInputField(password);
+        signUpPage.fillInConfirmPasswordInputField(confirmPassword);
+        signUpPage.clickOnSignUpButton();
+        messagePopUpPage.waitUntilPopUpMessageForInvalidLoginIsVisible();
+        Assert.assertEquals(messagePopUpPage.getTextFromPopUpMessageForInvalidLogin(), "E-mail already exists",
+                "Error message should be 'E-mail already exists'.");
+        Assert.assertEquals(navPage.getCurrentUrl(), baseUrl + "/signup",
+                "Current url should be " + baseUrl + "/signup");
+
+    }
 }
