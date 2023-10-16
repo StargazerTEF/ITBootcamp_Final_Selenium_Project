@@ -75,4 +75,19 @@ public class AdminCitiesTests extends BasicTest {
                 "Pop up message should contain text 'Saved successfully'.");
 
     }
+    @Test(priority = 5, retryAnalyzer = RetryAnalyzer.class)
+    public void SearchCity() {
+
+        String newCityName = "Marko Peric's city Edited";
+
+        navPage.clickOnAdminButton();
+        navPage.waitUntilAdminListIsVisible();
+        navPage.clickOnAdminCitiesFromAdminLIst();
+        navPage.waitUntilCurrentUrlContainsAdminCities();
+        citiesPage.fillInSearchInputField(newCityName);
+        citiesPage.waitUntilNumberOfRowsOfCitiesInSearchIs(1);
+        Assert.assertEquals(citiesPage.getTextFromCertainCellFromCertainRow(1, 2), newCityName,
+                "Name cell from first row should contain " + newCityName);
+
+    }
 }
