@@ -21,4 +21,18 @@ public class LoginPage extends BasicPage{
     public String getPasswordInputFieldValueForAttributeType() {
         return getPasswordInputField().getAttribute("type");
     }
+    public void fillInEmailInputField (String email) {
+        getEmailInputField().clear();
+        getEmailInputField().sendKeys(email);
+    }
+    public void fillInPasswordInputField (String password) {
+        getPasswordInputField().clear();
+        getPasswordInputField().sendKeys(password);
+    }
+    public WebElement getLoginButton () {
+        return driver.findElement(By.className("v-btn--is-elevated"));
+    }
+    public void clickOnLoginButton () {
+        getLoginButton().click();
+    }
 }

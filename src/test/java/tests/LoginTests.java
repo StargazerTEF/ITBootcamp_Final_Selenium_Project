@@ -28,4 +28,21 @@ public class LoginTests extends BasicTest {
                 "Password input field should have value 'password' for its type");
 
     }
+    @Test(priority = 3, retryAnalyzer = RetryAnalyzer.class)
+    public void DisplaysErrorWhenUserDoesNotExist() {
+
+        String email = "non-existing-user@gmal.com";
+        String password = "password123";
+
+        navPage.clickOnLoginButton();
+        loginPage.fillInEmailInputField(email);
+        loginPage.fillInPasswordInputField(password);
+        loginPage.clickOnLoginButton();
+        messagePopUpPage.waitUntilPopUpMessageForInvalidLoginIsVisible();
+        Assert.assertEquals(messagePopUpPage.getTextFromPopUpMessageForInvalidLogin(), "User does not exists",
+                "Error message should be 'User does not exists'.");
+        Assert.assertEquals(navPage.getCurrentUrl(), baseUrl + "/login",
+                "Current url should be " + baseUrl + "/login");
+
+    }
 }
