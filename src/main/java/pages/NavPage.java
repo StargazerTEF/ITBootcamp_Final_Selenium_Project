@@ -121,4 +121,17 @@ public class NavPage extends BasicPage {
                 .withMessage("Current url should contain '/admin/cities'.")
                 .until(ExpectedConditions.urlContains("/admin/cities"));
     }
+    public WebElement getSpanishLanguageInMenuList () {
+        return driver.findElement(By.cssSelector("span.f-es"));
+    }
+    public void clickOnSpanishLanguageInMenuList () {
+        getSpanishLanguageInMenuList().click();
+    }
+    public WebElement getHeader () {
+        return driver.findElement(By.cssSelector("h1.display-2"));
+    }
+    public String getHeaderText () {
+        return getHeader().getText();
+    }
+
 }
