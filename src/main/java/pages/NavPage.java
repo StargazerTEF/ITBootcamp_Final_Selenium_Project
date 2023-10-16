@@ -44,4 +44,10 @@ public class NavPage extends BasicPage{
     public String getCurrentUrl () {
         return driver.getCurrentUrl();
     }
+    public void waitUntilCurrentUrlContainsLogin () {
+        wait
+                .withMessage("Current url should contain '/login'.")
+                .until(ExpectedConditions.urlContains("/login"));
+    }
+
 }
