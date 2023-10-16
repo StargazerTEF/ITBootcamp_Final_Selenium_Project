@@ -48,4 +48,15 @@ public class LocaleTests extends BasicTest {
                 "Text in header should be 'Page d'atterrissage'.");
 
     }
+
+    @Test(priority = 5, retryAnalyzer = RetryAnalyzer.class)
+    public void setLocaleToUA() {
+
+        navPage.clickOnLanguageMenuButton();
+        navPage.waitUntilLanguageListIsVisible();
+        navPage.clickOnUkraineLanguageInMenuList();
+        Assert.assertEquals(navPage.getHeaderText(), "Лендінг",
+                "Text in header should be 'Лендінг'.");
+
+    }
 }
