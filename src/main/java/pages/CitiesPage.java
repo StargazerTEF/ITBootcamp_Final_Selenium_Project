@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -32,5 +33,14 @@ public class CitiesPage extends BasicPage {
     }
     public String getNameInputFieldValueForAttributeType() {
         return getNameInputField().getAttribute("type");
+    }
+    public void fillInNameInputField (String cityName) {
+        getNameInputField().sendKeys(Keys.chord(Keys.CONTROL, "a"), cityName);
+    }
+    public WebElement getSaveButton () {
+        return driver.findElement(By.className("btnSave"));
+    }
+    public void clickOnSaveButton () {
+        getSaveButton().click();
     }
 }

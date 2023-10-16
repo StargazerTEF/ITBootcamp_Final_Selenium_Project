@@ -36,4 +36,22 @@ public class AdminCitiesTests extends BasicTest {
         Assert.assertEquals(citiesPage.getNameInputFieldValueForAttributeType(), "text",
                 "Name input field should have value 'text' for its type");
     }
+    @Test(priority = 3, retryAnalyzer = RetryAnalyzer.class)
+    public void CreateNewCity() {
+
+        String cityName = "Marko Peric's city";
+
+        navPage.clickOnAdminButton();
+        navPage.waitUntilAdminListIsVisible();
+        navPage.clickOnAdminCitiesFromAdminLIst();
+        navPage.waitUntilCurrentUrlContainsAdminCities();
+        citiesPage.clickOnNewItemButton();
+        citiesPage.waitUntilPopUpMessageForAddOrEditCityIsVisible();
+        citiesPage.fillInNameInputField(cityName);
+        citiesPage.clickOnSaveButton();
+        messagePopUpPage.waitUntilPopUpMessageForSuccessfulAddOrEditCityIsVisible();
+        Assert.assertTrue(messagePopUpPage.getTextFromPopUpMessageForSuccessfulAddOrEditCity(),
+                "Pop up message should contain text 'Saved successfully'.");
+
+    }
 }

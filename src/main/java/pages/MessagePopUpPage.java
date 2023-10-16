@@ -39,5 +39,16 @@ public class MessagePopUpPage extends BasicPage{
     public void clickOnCloseButton () {
         getCloseButton().click();
     }
+    public WebElement getPopUpMessageForSuccessfulActions() {
+        return driver.findElement(By.cssSelector(".success .v-snack__content"));
+    }
+    public void waitUntilPopUpMessageForSuccessfulAddOrEditCityIsVisible () {
+        wait
+                .withMessage("Pop-up message for successful add/edit city should be visible.")
+                .until(ExpectedConditions.visibilityOf(getPopUpMessageForSuccessfulActions()));
+    }
+    public boolean getTextFromPopUpMessageForSuccessfulAddOrEditCity () {
+        return getPopUpMessageForSuccessfulActions().getText().contains("Saved successfully");
+    }
 }
 
