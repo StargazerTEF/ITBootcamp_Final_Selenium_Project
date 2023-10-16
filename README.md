@@ -1,5 +1,5 @@
 # ITBootcamp_Final_Selenium_Project
-Web automation final project at IT Bootcamp
+Web automation final project at IT Bootcamp:
 Demonstrating skills for software application testing with Selenium and TestNG libraries
 Technologies - Java, Maven, Selenium TestNG, Git
 Tasks:
