@@ -19,8 +19,25 @@ public class MessagePopUpPage extends BasicPage{
                 .withMessage("Pop-up message for invalid login should be visible.")
                 .until(ExpectedConditions.visibilityOf(getPopUpMessageForInvalidLogin()));
     }
-
     public String getTextFromPopUpMessageForInvalidLogin () {
         return getPopUpMessageForInvalidLogin().getText();
     }
+    public WebElement getPopUpMessageForAccountVerify () {
+        return driver.findElement(By.className("v-card__title"));
+    }
+    public void waitUntilPopUpMessageForAccountVerifyIsVisible () {
+        wait
+                .withMessage("Pop-up message for account verify should be visible.")
+                .until(ExpectedConditions.visibilityOf(getPopUpMessageForAccountVerify()));
+    }
+    public String getTextFromPopUpMessageForAccountVerify () {
+        return getPopUpMessageForAccountVerify().getText();
+    }
+    public WebElement getCloseButton () {
+        return driver.findElement(By.cssSelector(".v-card__actions button"));
+    }
+    public void clickOnCloseButton () {
+        getCloseButton().click();
+    }
 }
+
