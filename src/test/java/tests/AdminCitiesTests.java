@@ -24,4 +24,16 @@ public class AdminCitiesTests extends BasicTest {
                 "Current url should be " + baseUrl + "/admin/cities");
 
     }
+    @Test(priority = 2, retryAnalyzer = RetryAnalyzer.class)
+    public void ChecksInputTypesForCreateOrEditNewCity() {
+
+        navPage.clickOnAdminButton();
+        navPage.waitUntilAdminListIsVisible();
+        navPage.clickOnAdminCitiesFromAdminLIst();
+        navPage.waitUntilCurrentUrlContainsAdminCities();
+        citiesPage.clickOnNewItemButton();
+        citiesPage.waitUntilPopUpMessageForAddOrEditCityIsVisible();
+        Assert.assertEquals(citiesPage.getNameInputFieldValueForAttributeType(), "text",
+                "Name input field should have value 'text' for its type");
+    }
 }
