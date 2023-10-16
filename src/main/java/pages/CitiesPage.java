@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 public class CitiesPage extends BasicPage {
     public CitiesPage(WebDriver driver, WebDriverWait wait) {
         super(driver, wait);
@@ -42,5 +44,27 @@ public class CitiesPage extends BasicPage {
     }
     public void clickOnSaveButton () {
         getSaveButton().click();
+    }
+    public WebElement getSearchInputField () {
+        return driver.findElement(By.id("search"));
+    }
+    public void fillInSearchInputField (String oldCityName) {
+        getSearchInputField().clear();
+        getSearchInputField().sendKeys(oldCityName);
+    }
+
+    public void waitUntilNumberOfRowsOfCitiesInSearchIs (int numberOfRows) {
+        wait
+                .withMessage("Number of rows of cities in search should be" + numberOfRows + ".")
+                .until(ExpectedConditions.numberOfElementsToBe(By.cssSelector(".v-data-table__wrapper tbody tr"), numberOfRows));
+    }
+    public List<WebElement> getEditButtonsFromAllRows () {
+        return driver.findElements(By.cssSelector(".v-data-table__wrapper tbody tr td #edit"));
+    }
+    public WebElement getEditButtonFromRow(int rowNumber) {
+        return getEditButtonsFromAllRows().get(rowNumber - 1);
+    }
+    public void clickOnEditButtonFromRow (int rowNumber) {
+        getEditButtonFromRow(rowNumber).click();
     }
 }
