@@ -54,4 +54,15 @@ public class NavPage extends BasicPage{
                 .withMessage("Current url should contain '/home'.")
                 .until(ExpectedConditions.urlContains("/home"));
     }
+    public WebElement getLogoutButton () {
+        return driver.findElement(By.className("btnLogout"));
+    }
+    public void clickOnLogoutButton () {
+        getLogoutButton().click();
+    }
+    public void waitUntilLogoutButtonIsVisible () {
+        wait
+                .withMessage("Logout button should be visible.")
+                .until(ExpectedConditions.visibilityOf(getLogoutButton()));
+    }
 }
