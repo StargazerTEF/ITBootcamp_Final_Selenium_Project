@@ -62,4 +62,18 @@ public class LoginTests extends BasicTest {
                 "Current url should be " + baseUrl + "/login");
 
     }
+    @Test(priority = 5, retryAnalyzer = RetryAnalyzer.class)
+    public void SuccessfulLogin() {
+
+        String email = "admin@admin.com";
+        String password = "12345";
+
+        navPage.clickOnLoginButton();
+        navPage.waitUntilCurrentUrlContainsLogin();
+        loginPage.fillInEmailInputField(email);
+        loginPage.fillInPasswordInputField(password);
+        loginPage.clickOnLoginButton();
+        navPage.waitUntilCurrentUrlContainsHome();
+
+    }
 }

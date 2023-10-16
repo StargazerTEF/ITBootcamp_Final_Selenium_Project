@@ -49,5 +49,9 @@ public class NavPage extends BasicPage{
                 .withMessage("Current url should contain '/login'.")
                 .until(ExpectedConditions.urlContains("/login"));
     }
-
+    public void waitUntilCurrentUrlContainsHome () {
+        wait
+                .withMessage("Current url should contain '/home'.")
+                .until(ExpectedConditions.urlContains("/home"));
+    }
 }
