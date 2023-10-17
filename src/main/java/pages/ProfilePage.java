@@ -1,9 +1,6 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -67,5 +64,50 @@ public class ProfilePage extends BasicPage {
     }
     public String getPhoneInputFieldValueForAttributeType() {
         return getPhoneInputField().getAttribute("type");
+    }
+    public void inputNewName (String name) {
+        getNameInputField().click();
+        getNameInputField().sendKeys(Keys.chord(Keys.CONTROL, "a"), name);
+    }
+    public void inputNewPhone (String phone) {
+        getPhoneInputField().sendKeys(Keys.chord(Keys.CONTROL, "a"), phone);
+    }
+    public void inputNewCity (String city) {
+        getCityInputField().sendKeys(Keys.chord(Keys.CONTROL, "a"), city);
+        getCityInputField().sendKeys(Keys.ENTER);
+    }
+    public void inputNewCountry (String country) {
+        getCountryInputField().click();
+        getCountryInputField().sendKeys(Keys.chord(Keys.CONTROL, "a"), country);
+    }
+    public void inputNewTwitterUrl (String twitter) {
+        getUrlTwitterInputField().sendKeys(Keys.chord(Keys.CONTROL, "a"), twitter);
+    }
+    public void inputNewGitHubUrl (String gitHub) {
+        getUrlGitHubInputField().sendKeys(Keys.chord(Keys.CONTROL, "a"), gitHub);
+    }
+    public WebElement getSaveButton () {
+        return driver.findElement(By.className("btnSave"));
+    }
+    public void clickOnSaveButton () {
+        getSaveButton().click();
+    }
+    public String getNameInputFieldValue() {
+        return getNameInputField().getAttribute("value");
+    }
+    public String getPhoneInputFieldValue() {
+        return getPhoneInputField().getAttribute("value");
+    }
+    public String getCityInputFieldValue () {
+        return getCityInputField().getAttribute("value");
+    }
+    public String getCountryInputFieldValue () {
+        return getCountryInputField().getAttribute("value");
+    }
+    public String getTwitterUrlInputFieldValue () {
+        return getUrlTwitterInputField().getAttribute("value");
+    }
+    public String getGitHubUrlInputFieldValue () {
+        return getUrlGitHubInputField().getAttribute("value");
     }
 }

@@ -54,4 +54,47 @@ public class ProfileTests extends BasicTest {
                 "Phone input field type should have value 'tel'.");
         navPage.clickOnLogoutButton();
     }
+
+    @Test(priority = 3, retryAnalyzer = RetryAnalyzer.class)
+    public void EditProfile() {
+
+        String email = "admin@admin.com";
+        String password = "12345";
+        String name = "Marko Peric";
+        String phone = "+38161283223";
+        String city = "Bucaramanga";
+        String country = "Spain";
+        String twitter = "https://twitter.com/profile/milan1232";
+        String github = "https://github.com/";
+
+        navPage.clickOnLoginButton();
+        loginPage.loginWIthAdminCredentials(email, password);
+        navPage.waitUntilCurrentUrlContainsHome();
+        navPage.clickOnMyProfileButton();
+        profilePage.waitUntilLoadDialogBecomesInvisible();
+        profilePage.inputNewName(name);
+        profilePage.inputNewPhone(phone);
+        profilePage.inputNewCity(city);
+        profilePage.inputNewCountry(country);
+        profilePage.inputNewTwitterUrl(twitter);
+        profilePage.inputNewGitHubUrl(github);
+        profilePage.clickOnSaveButton();
+        messagePopUpPage.waitUntilPopUpMessageForSuccessfulProfileUpdateIsVisible();
+        Assert.assertTrue(messagePopUpPage.getTextFromPopUpMessageForSuccessfulProfileUpdate(),
+                "Pop up message should contain 'Profile saved successfuly'.");
+        Assert.assertEquals(profilePage.getNameInputFieldValue(), name,
+                "Name input field should have " + name + " value.");
+        Assert.assertEquals(profilePage.getPhoneInputFieldValue(), phone,
+                "Phone input field should have " + phone + " value.");
+        Assert.assertEquals(profilePage.getCityInputFieldValue(), city,
+                "City input field should have " + city + " value.");
+        Assert.assertEquals(profilePage.getCountryInputFieldValue(), country,
+                "Country input field should have " + country + " value.");
+        Assert.assertEquals(profilePage.getTwitterUrlInputFieldValue(), twitter,
+                "Twitter url input field should have " + twitter + " value.");
+        Assert.assertEquals(profilePage.getGitHubUrlInputFieldValue(), github,
+                "GitHub url input field should have " + github + " value.");
+        navPage.clickOnLogoutButton();
+
+    }
 }
