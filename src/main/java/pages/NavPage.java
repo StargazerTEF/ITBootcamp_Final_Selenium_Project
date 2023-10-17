@@ -151,4 +151,10 @@ public class NavPage extends BasicPage {
     public void clickOnUkraineLanguageInMenuList () {
         getUkraineLanguageInMenuList().click();
     }
+    public WebElement getMyProfileButton () {
+        return driver.findElement(By.className("btnProfile"));
+    }
+    public void clickOnMyProfileButton () {
+        getMyProfileButton().click();
+    }
 }

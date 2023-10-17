@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -23,5 +24,48 @@ public class ProfilePage extends BasicPage {
     }
     public String getEmailInputFieldValue () {
         return getEmailInputField().getAttribute("value");
+    }
+    public String getEmailInputFieldValueForAttributeType() {
+        return getEmailInputField().getAttribute("type");
+    }
+    public String getEmailInputFieldValueForAttributeDisabled() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        return js.executeScript("return arguments[0].getAttribute('disabled');", getEmailInputField()).toString();
+    }
+    public WebElement getNameInputField () {
+        return driver.findElement(By.id("name"));
+    }
+    public String getNameInputFieldValueForAttributeType() {
+        return getNameInputField().getAttribute("type");
+    }
+    public WebElement getCityInputField () {
+        return driver.findElement(By.id("city"));
+    }
+    public String getCityInputFieldValueForAttributeType() {
+        return getCityInputField().getAttribute("type");
+    }
+    public WebElement getCountryInputField () {
+        return driver.findElement(By.id("country"));
+    }
+    public String getCountryInputFieldValueForAttributeType() {
+        return getCountryInputField().getAttribute("type");
+    }
+    public WebElement getUrlTwitterInputField () {
+        return driver.findElement(By.id("urlTwitter"));
+    }
+    public String getUrlTwitterInputFieldValueForAttributeType() {
+        return getUrlTwitterInputField().getAttribute("type");
+    }
+    public WebElement getUrlGitHubInputField () {
+        return driver.findElement(By.id("urlGitHub"));
+    }
+    public String getUrlGitHubInputFieldValueForAttributeType() {
+        return getUrlGitHubInputField().getAttribute("type");
+    }
+    public WebElement getPhoneInputField () {
+        return driver.findElement(By.id("phone"));
+    }
+    public String getPhoneInputFieldValueForAttributeType() {
+        return getPhoneInputField().getAttribute("type");
     }
 }
