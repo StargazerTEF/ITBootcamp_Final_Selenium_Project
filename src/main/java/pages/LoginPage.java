@@ -35,4 +35,9 @@ public class LoginPage extends BasicPage{
     public void clickOnLoginButton () {
         getLoginButton().click();
     }
+    public void loginWIthAdminCredentials (String email, String password) {
+        fillInEmailInputField(email);
+        fillInPasswordInputField(password);
+        clickOnLoginButton();
+    }
 }
